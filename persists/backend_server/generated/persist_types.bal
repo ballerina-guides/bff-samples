@@ -75,7 +75,7 @@ public type CargoOptionalized record {|
 
 public type CargoWithRelations record {|
     *CargoOptionalized;
-    OrderOptionalized[] 'order?;
+    OrderOptionalized[] orders?;
 |};
 
 public type CargoTargetType typedesc<CargoWithRelations>;

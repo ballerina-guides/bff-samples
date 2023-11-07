@@ -50,16 +50,16 @@ public isolated client class Client {
                 startFrom: {columnName: "startFrom"},
                 endFrom: {columnName: "endFrom"},
                 'type: {columnName: "type"},
-                "order[].orderId": {relation: {entityName: "order", refField: "orderId"}},
-                "order[].customerId": {relation: {entityName: "order", refField: "customerId"}},
-                "order[].date": {relation: {entityName: "order", refField: "date"}},
-                "order[].status": {relation: {entityName: "order", refField: "status"}},
-                "'order[].cargoId": {relation: {entityName: "order", refField: "cargoId"}},
-                "order[].quantity": {relation: {entityName: "order", refField: "quantity"}},
-                "order[].item": {relation: {entityName: "order", refField: "item"}}
+                "orders[].orderId": {relation: {entityName: "orders", refField: "orderId"}},
+                "orders[].customerId": {relation: {entityName: "orders", refField: "customerId"}},
+                "orders[].date": {relation: {entityName: "orders", refField: "date"}},
+                "orders[].status": {relation: {entityName: "orders", refField: "status"}},
+                "orders[].cargoId": {relation: {entityName: "orders", refField: "cargoId"}},
+                "orders[].quantity": {relation: {entityName: "orders", refField: "quantity"}},
+                "orders[].item": {relation: {entityName: "orders", refField: "item"}}
             },
             keyFields: ["id"],
-            joinMetadata: {'order: {entity: Order, fieldName: "'order", refTable: "Order", refColumns: ["cargoId"], joinColumns: ["id"], 'type: psql:MANY_TO_ONE}}
+            joinMetadata: {orders: {entity: Order, fieldName: "orders", refTable: "Order", refColumns: ["cargoId"], joinColumns: ["id"], 'type: psql:MANY_TO_ONE}}
         }
     };
 

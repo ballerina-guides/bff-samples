@@ -7,21 +7,21 @@ Most web apps rely on REST APIs, with JSON serving as the predominant data excha
 1. Clone the project
 
 ```
-$ git clone https://github.com/SasinduDilshara/BFF-Samples.git
+$ git clone https://github.com/ballerina-guides/bff-samples.git
 ```
 
 2. Open a Terminal and run the Ballerina Server
 
 ```
-$ cd BFF-Samples
-$ cd ballerina_rest
+$ cd bff-samples
+$ cd rest/backend_server
 $ bal run
 ```
 
 3. Then open a new terminal in the project path and run the React server
 
 ```
-$ cd BFF-Samples
-$ cd ballerina_rest/ui
-$ npm start
+$ cd bff-samples
+$ cd rest/frontend_server
+$ npm run dev
 ```

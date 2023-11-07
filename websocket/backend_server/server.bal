@@ -3,10 +3,10 @@ import ballerina/log;
 import ballerina/random;
 import ballerina/websocket;
 
-type Location record {
+type Location record {|
     float latitude;
     float longitude;
-};
+|};
 
 // Example ws://localhost:9091/logistics/vehicles/V-20.
 service /logistics on new websocket:Listener(9091) {
@@ -20,7 +20,7 @@ distinct service class OrderService {
 
     string vehicleId;
     function init(string vehicleId) {
-        self.vehicleId = vehicleId;        
+        self.vehicleId = vehicleId;
     }
 
     remote function onOpen(websocket:Caller caller) returns error? {

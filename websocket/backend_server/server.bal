@@ -18,13 +18,12 @@ service /logistics on new websocket:Listener(9091) {
 distinct service class OrderService {
     *websocket:Service;
 
-    string vehicleId;
+    private final string vehicleId;
     function init(string vehicleId) {
         self.vehicleId = vehicleId;
     }
 
     remote function onOpen(websocket:Caller caller) returns error? {
-
         // Create a new strand  and allocate it to send the locations to the client 
         _ = start self.routeLocationFromServerToClient(caller, self.vehicleId);
         return;

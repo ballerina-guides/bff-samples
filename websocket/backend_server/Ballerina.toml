@@ -1,6 +1,6 @@
 [package]
-org = "wso2"
-name = "ballerina_websocket"
+org = "bff_samples"
+name = "websocket"
 version = "0.1.0"
 distribution = "2201.8.2"
 

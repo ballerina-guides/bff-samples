@@ -12,7 +12,7 @@ CREATE TABLE `Cargo` (
 	`lon` VARCHAR(191) NOT NULL,
 	`startFrom` VARCHAR(191) NOT NULL,
 	`endFrom` VARCHAR(191) NOT NULL,
-	`type` ENUM('ShipEx', 'CargoWave', 'TradeLogix') NOT NULL,
+	`cargoType` ENUM('ShipEx', 'CargoWave', 'TradeLogix') NOT NULL,
 	PRIMARY KEY(`id`)
 );
 

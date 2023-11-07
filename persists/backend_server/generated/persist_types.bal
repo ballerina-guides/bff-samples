@@ -61,7 +61,7 @@ public type Cargo record {|
     string lon;
     string startFrom;
     string endFrom;
-    CargoType 'type;
+    CargoType cargoType;
 |};
 
 public type CargoOptionalized record {|
@@ -70,7 +70,7 @@ public type CargoOptionalized record {|
     string lon?;
     string startFrom?;
     string endFrom?;
-    CargoType 'type?;
+    CargoType cargoType?;
 |};
 
 public type CargoWithRelations record {|
@@ -87,6 +87,6 @@ public type CargoUpdate record {|
     string lon?;
     string startFrom?;
     string endFrom?;
-    CargoType 'type?;
+    CargoType cargoType?;
 |};
 

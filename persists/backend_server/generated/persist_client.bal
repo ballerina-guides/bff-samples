@@ -35,7 +35,7 @@ public isolated client class Client {
                 "cargo.lon": {relation: {entityName: "cargo", refField: "lon"}},
                 "cargo.startFrom": {relation: {entityName: "cargo", refField: "startFrom"}},
                 "cargo.endFrom": {relation: {entityName: "cargo", refField: "endFrom"}},
-                "cargo.type": {relation: {entityName: "cargo", refField: "type"}}
+                "cargo.cargoType": {relation: {entityName: "cargo", refField: "cargoType"}}
             },
             keyFields: ["orderId"],
             joinMetadata: {cargo: {entity: Cargo, fieldName: "cargo", refTable: "Cargo", refColumns: ["id"], joinColumns: ["cargoId"], 'type: psql:ONE_TO_MANY}}
@@ -49,7 +49,7 @@ public isolated client class Client {
                 lon: {columnName: "lon"},
                 startFrom: {columnName: "startFrom"},
                 endFrom: {columnName: "endFrom"},
-                'type: {columnName: "type"},
+                cargoType: {columnName: "cargoType"},
                 "orders[].orderId": {relation: {entityName: "orders", refField: "orderId"}},
                 "orders[].customerId": {relation: {entityName: "orders", refField: "customerId"}},
                 "orders[].date": {relation: {entityName: "orders", refField: "date"}},

@@ -17,7 +17,7 @@ public type Cargo record {|
     string startFrom;
     string endFrom;
     Order[] orders;
-    CargoType 'type;
+    CargoType cargoType;
 |};
 
 public enum OrderStatus {

@@ -19,6 +19,7 @@ distinct service class OrderService {
     *websocket:Service;
 
     private final string vehicleId;
+
     function init(string vehicleId) {
         self.vehicleId = vehicleId;
     }

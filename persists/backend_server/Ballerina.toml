@@ -1,0 +1,17 @@
+[package]
+org = "bff"
+name = "persists"
+version = "0.1.0"
+distribution = "2201.8.2"
+
+[build-options]
+observabilityIncluded = true
+
+[persist]
+datastore = "mysql"
+module = "persists"
+
+[[platform.java11.dependency]]
+groupId = "io.ballerina.stdlib"
+artifactId = "persist.sql-native"
+version = "1.2.0"

@@ -2,7 +2,7 @@ import ballerina/http;
 import ballerina/persist;
 import ballerina/random;
 
-final Client ordersDatabase = check new ();
+final Client orderDatabase = check new;
 
 @http:ServiceConfig {
     cors: {
@@ -10,11 +10,38 @@ final Client ordersDatabase = check new ();
     }
 }
 service /sales on new http:Listener(9090) {
+    // Example: http://localhost:9090/sales/orders
+    isolated resource function get orders() returns Order[]|error {
+        return from Order entry in orderDatabase->/orders(targetType = Order)
+            select entry;
+    };
+
+    // Example: http://localhost:9090/sales/orders/HM-238
+    isolated resource function get orders/[string id]() returns Order|http:BadRequest {
+        Order|error orderEntry = orderDatabase->/orders/[id];
+        if orderEntry is Order {
+            return orderEntry;
+        }
+        return <http:BadRequest>{
+            body: {
+                message: string `Error while inserting the order, ${orderEntry.message()}`
+            }
+        };
+    };
+
+    // Example: http://localhost:9090/sales/cargos/HM-238/orders
+    isolated resource function get cargos/[string cargoId]/orders() returns Order[]|error {
+        return from Order entry in orderDatabase->/orders(targetType = Order)
+            where entry.cargoId == cargoId
+            where entry.cargoId == cargoId
+            order by entry.quantity descending
+            select entry;
+    };
 
     // Example: http://localhost:9090/sales/orders
     isolated resource function post orders(Order orderEntry) returns http:Ok|http:InternalServerError|http:BadRequest|error {
         orderEntry.cargoId = check assignCargoId();
-        string[]|persist:Error submitResult = ordersDatabase->/orders.post([orderEntry]);
+        string[]|persist:Error submitResult = orderDatabase->/orders.post([orderEntry]);
         if submitResult is string[] {
             return http:OK;
         } else if submitResult is persist:ConstraintViolationError {
@@ -30,34 +57,6 @@ service /sales on new http:Listener(9090) {
                 }
             };
         }
-    };
-
-    // Example: http://localhost:9090/sales/orders
-    isolated resource function get orders() returns Order[]|error {
-        return from Order entry in ordersDatabase->/orders(targetType = Order)
-            select entry;
-    };
-
-    // Example: http://localhost:9090/sales/orders/HM-238
-    isolated resource function get orders/[string id]() returns Order|http:BadRequest {
-        Order|error orderEntry = ordersDatabase->/orders/[id];
-        if orderEntry is Order {
-            return orderEntry;
-        }
-        return <http:BadRequest>{
-            body: {
-                message: string `Error while inserting the order, ${orderEntry.message()}`
-            }
-        };
-    };
-
-    // Example: http://localhost:9090/sales/cargos/HM-238/orders
-    isolated resource function get cargos/[string cargoId]/orders() returns Order[]|error {
-        return from Order entry in ordersDatabase->/orders(targetType = Order)
-            where entry.cargoId == cargoId
-            where entry.cargoId == cargoId
-            order by entry.quantity descending
-            select entry;
     };
 }
 

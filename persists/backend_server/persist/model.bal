@@ -5,7 +5,7 @@ public type Order record {|
     string customerId;
     string date;
     OrderStatus status;
-	Cargo cargo;
+    Cargo cargo;
     int quantity;
     string item;
 |};
@@ -16,7 +16,7 @@ public type Cargo record {|
     string lon;
     string startFrom;
     string endFrom;
-    Order[] 'order;
+    Order[] orders;
     CargoType 'type;
 |};
 

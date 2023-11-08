@@ -11,11 +11,11 @@ type Location record {|
 // Example ws://localhost:9091/logistics/vehicles/V-20.
 service /logistics on new websocket:Listener(9091) {
     resource function get vehicles/[string vehicleId]() returns websocket:Service {
-        return new OrderService(vehicleId);
+        return new LocationService(vehicleId);
     }
 }
 
-distinct service class OrderService {
+distinct service class LocationService {
     *websocket:Service;
 
     private final string vehicleId;

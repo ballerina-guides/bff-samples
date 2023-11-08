@@ -1,4 +1,4 @@
-# Ballerina with Websockets
+# Expose Real-time Data using WebSockets
 
 Modern web and mobile app users expect real-time updates, whether it's tracking a cab's live location or viewing up-to-the-minute inventory levels. In-app chat functionality with sales agents or colleagues has also become a common feature. WebSockets emerge as the ideal technology for these real-time data transfers between front-end and back-end systems. 
 

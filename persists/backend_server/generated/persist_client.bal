@@ -23,7 +23,7 @@ public isolated client class Client {
             entityName: "Order",
             tableName: "Order",
             fieldMetadata: {
-                orderId: {columnName: "orderId"},
+                id: {columnName: "id"},
                 customerId: {columnName: "customerId"},
                 date: {columnName: "date"},
                 status: {columnName: "status"},
@@ -37,7 +37,7 @@ public isolated client class Client {
                 "cargo.endFrom": {relation: {entityName: "cargo", refField: "endFrom"}},
                 "cargo.cargoType": {relation: {entityName: "cargo", refField: "cargoType"}}
             },
-            keyFields: ["orderId"],
+            keyFields: ["id"],
             joinMetadata: {cargo: {entity: Cargo, fieldName: "cargo", refTable: "Cargo", refColumns: ["id"], joinColumns: ["cargoId"], 'type: psql:ONE_TO_MANY}}
         },
         [CARGO] : {
@@ -50,7 +50,7 @@ public isolated client class Client {
                 startFrom: {columnName: "startFrom"},
                 endFrom: {columnName: "endFrom"},
                 cargoType: {columnName: "cargoType"},
-                "orders[].orderId": {relation: {entityName: "orders", refField: "orderId"}},
+                "orders[].id": {relation: {entityName: "orders", refField: "id"}},
                 "orders[].customerId": {relation: {entityName: "orders", refField: "customerId"}},
                 "orders[].date": {relation: {entityName: "orders", refField: "date"}},
                 "orders[].status": {relation: {entityName: "orders", refField: "status"}},
@@ -80,7 +80,7 @@ public isolated client class Client {
         name: "query"
     } external;
 
-    isolated resource function get orders/[string orderId](OrderTargetType targetType = <>) returns targetType|persist:Error = @java:Method {
+    isolated resource function get orders/[string id](OrderTargetType targetType = <>) returns targetType|persist:Error = @java:Method {
         'class: "io.ballerina.stdlib.persist.sql.datastore.MySQLProcessor",
         name: "queryOne"
     } external;
@@ -92,25 +92,25 @@ public isolated client class Client {
         }
         _ = check sqlClient.runBatchInsertQuery(data);
         return from OrderInsert inserted in data
-            select inserted.orderId;
+            select inserted.id;
     }
 
-    isolated resource function put orders/[string orderId](OrderUpdate value) returns Order|persist:Error {
+    isolated resource function put orders/[string id](OrderUpdate value) returns Order|persist:Error {
         psql:SQLClient sqlClient;
         lock {
             sqlClient = self.persistClients.get(ORDER);
         }
-        _ = check sqlClient.runUpdateQuery(orderId, value);
-        return self->/orders/[orderId].get();
+        _ = check sqlClient.runUpdateQuery(id, value);
+        return self->/orders/[id].get();
     }
 
-    isolated resource function delete orders/[string orderId]() returns Order|persist:Error {
-        Order result = check self->/orders/[orderId].get();
+    isolated resource function delete orders/[string id]() returns Order|persist:Error {
+        Order result = check self->/orders/[id].get();
         psql:SQLClient sqlClient;
         lock {
             sqlClient = self.persistClients.get(ORDER);
         }
-        _ = check sqlClient.runDeleteQuery(orderId);
+        _ = check sqlClient.runDeleteQuery(id);
         return result;
     }
 

@@ -16,7 +16,7 @@ export default function SimpleDialog(props) {
       <DialogTitle sx={{textAlign:"center"}}>Order</DialogTitle>
       <ul style={{padding:"1rem 5rem"}}>
         <li>
-        <p><b>{"id -"}</b> {order.orderId}</p>
+        <p><b>{"id -"}</b> {order.id}</p>
         </li>
         <li>
         <p><b>{"status -"}</b> {order.status}</p>

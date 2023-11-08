@@ -18,7 +18,7 @@ public enum CargoType {
 }
 
 public type Order record {|
-    readonly string orderId;
+    readonly string id;
     string customerId;
     string date;
     OrderStatus status;
@@ -28,7 +28,7 @@ public type Order record {|
 |};
 
 public type OrderOptionalized record {|
-    string orderId?;
+    string id?;
     string customerId?;
     string date?;
     OrderStatus status?;

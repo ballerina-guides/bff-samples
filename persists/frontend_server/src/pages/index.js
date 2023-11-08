@@ -18,9 +18,9 @@ const Page = () => {
   const [id, setId] = useState('');
   const [order, setOrder] = useState('');
 
-  const fetchOrderData = async (orderId) => {
+  const fetchOrderData = async (id) => {
     try {
-      const response = await getAPI(getOrderUrl + "/" + orderId);
+      const response = await getAPI(getOrderUrl + "/" + id);
       if (response.status !== 200) {
         setError(response.message);
       } else {

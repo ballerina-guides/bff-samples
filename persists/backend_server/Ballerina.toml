@@ -1,6 +1,6 @@
 [package]
 org = "bff_samples"
-name = "persists"
+name = "data_persistence"
 version = "0.1.0"
 distribution = "2201.8.2"
 
@@ -9,7 +9,7 @@ observabilityIncluded = true
 
 [persist]
 datastore = "mysql"
-module = "persists"
+module = "data_persistence"
 
 [[platform.java17.dependency]]
 groupId = "io.ballerina.stdlib"

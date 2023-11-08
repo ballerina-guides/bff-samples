@@ -1,7 +1,7 @@
 import ballerina/persist as _;
 
 public type Order record {|
-    readonly string orderId;
+    readonly string id;
     string customerId;
     string date;
     OrderStatus status;

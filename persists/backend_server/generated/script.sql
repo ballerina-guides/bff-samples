@@ -17,7 +17,7 @@ CREATE TABLE `Cargo` (
 );
 
 CREATE TABLE `Order` (
-	`orderId` VARCHAR(191) NOT NULL,
+	`id` VARCHAR(191) NOT NULL,
 	`customerId` VARCHAR(191) NOT NULL,
 	`date` VARCHAR(191) NOT NULL,
 	`status` ENUM('PENDING', 'SHIPPED', 'DELIVERED', 'CANCELED', 'RETURNED') NOT NULL,
@@ -25,5 +25,5 @@ CREATE TABLE `Order` (
 	`item` VARCHAR(191) NOT NULL,
 	`cargoId` VARCHAR(191) NOT NULL,
 	FOREIGN KEY(`cargoId`) REFERENCES `Cargo`(`id`),
-	PRIMARY KEY(`orderId`)
+	PRIMARY KEY(`id`)
 );

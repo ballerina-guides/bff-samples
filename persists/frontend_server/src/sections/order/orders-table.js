@@ -51,10 +51,10 @@ export const OrdersTable = (props) => {
                 return (
                   <TableRow
                     hover
-                    key={order.orderId}
+                    key={order.id}
                   >
                     <TableCell>
-                      {order.orderId}
+                      {order.id}
                     </TableCell>
                     <TableCell>
                       {order.status}
@@ -72,7 +72,7 @@ export const OrdersTable = (props) => {
                       {order.date}
                     </TableCell>
                     <TableCell>
-                      <Button onClick={() => handleClick(order.orderId)}>View</Button>
+                      <Button onClick={() => handleClick(order.id)}>View</Button>
                     </TableCell>
                   </TableRow>
                 );

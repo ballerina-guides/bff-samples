@@ -17,16 +17,17 @@ service /sales on new http:Listener(9090) {
     };
 
     // Example: http://localhost:9090/sales/orders/HM-238
-    isolated resource function get orders/[string id]() returns Order|http:BadRequest {
-        Order|error orderEntry = orderDatabase->/orders/[id];
-        if orderEntry is Order {
+    isolated resource function get orders/[string id]() returns Order|http:NotFound|http:InternalServerError {
+        Order|persist:Error orderEntry = orderDatabase->/orders/[id];
+        if orderEntry is persist:NotFoundError {
+            return <http:NotFound>{body: {message: string `Order not found, id: ${id}`}};
+        } else if orderEntry is persist:Error {
+            return <http:InternalServerError>{
+                body: {message: string `Error while retrieving the order ${orderEntry.message()}`}
+            };
+        } else {
             return orderEntry;
         }
-        return <http:BadRequest>{
-            body: {
-                message: string `Error while inserting the order, ${orderEntry.message()}`
-            }
-        };
     };
 
     // Example: http://localhost:9090/sales/cargos/HM-238/orders
@@ -39,27 +40,25 @@ service /sales on new http:Listener(9090) {
     };
 
     // Example: http://localhost:9090/sales/orders
-    isolated resource function post orders(Order orderEntry) returns http:Ok|http:InternalServerError|http:BadRequest|error {
-        orderEntry.cargoId = check assignCargoId();
+    isolated resource function post orders(Order orderEntry) returns http:Ok|http:InternalServerError|http:BadRequest {
+        orderEntry.cargoId = assignCargoId();
         string[]|persist:Error submitResult = orderDatabase->/orders.post([orderEntry]);
         if submitResult is string[] {
             return http:OK;
         } else if submitResult is persist:ConstraintViolationError {
-            return <http:BadRequest>{
-                body: {
-                    message: string `Invalid cargo id: ${orderEntry.cargoId}`
-                }
-            };
+            return <http:BadRequest>{body: {message: string `Invalid cargo id: ${orderEntry.cargoId}`}};
         } else {
             return <http:InternalServerError>{
-                body: {
-                    message: string `Error while inserting an order ${submitResult.message()}`
-                }
+                body: {message: string `Error while inserting an order ${submitResult.message()}`}
             };
         }
     };
 }
 
-isolated function assignCargoId() returns string|error {
-    return string `S-${check random:createIntInRange(224, 226)}`;
+isolated function assignCargoId() returns string {
+    do {
+        return string `S-${check random:createIntInRange(224, 226)}`;
+    } on fail {
+        return "S-224";
+    }
 }

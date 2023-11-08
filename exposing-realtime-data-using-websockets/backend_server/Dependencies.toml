@@ -318,8 +318,8 @@ modules = [
 ]
 
 [[package]]
-org = "wso2"
-name = "ballerina_websocket"
+org = "bff_samples"
+name = "websocket"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "lang.runtime"},
@@ -329,6 +329,6 @@ dependencies = [
 	{org = "ballerinai", name = "observe"}
 ]
 modules = [
-	{org = "wso2", packageName = "ballerina_websocket", moduleName = "ballerina_websocket"}
+	{org = "bff_samples", packageName = "websocket", moduleName = "websocket"}
 ]
 

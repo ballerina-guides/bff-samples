@@ -1,6 +1,6 @@
 import ballerina/http;
 
-public type Order record {|
+type Order record {|
     readonly string id;
     string customerId;
     string? shipId;
@@ -10,7 +10,7 @@ public type Order record {|
     string item;
 |};
 
-public enum OrderStatus {
+enum OrderStatus {
     PENDING,
     SHIPPED,
     DELIVERED,
@@ -37,10 +37,7 @@ service /sales on new http:Listener(9090) {
 
     // Example: http://localhost:9090/sales/orders/HM-238
     resource function get orders/[string id]() returns Order|http:NotFound {
-        if orders.hasKey(id) {
-            return orders.get(id);
-        }
-        return <http:NotFound>{body: string `Order not found. Order ID: ${id}`};
+        return orders[id] ?: <http:NotFound>{body: string `Order not found. Order ID: ${id}`};
     };
 
     // Example: http://localhost:9090/sales/customers/C-124/orders?status=PENDING

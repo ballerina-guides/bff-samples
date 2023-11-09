@@ -14,7 +14,7 @@ $ git clone https://github.com/ballerina-guides/bff-samples.git
 
 ```
 $ cd bff-samples
-$ cd rest/backend_server
+$ cd restful-order-service/backend_server
 $ bal run
 ```
 
@@ -22,6 +22,6 @@ $ bal run
 
 ```
 $ cd bff-samples
-$ cd rest/frontend_server
+$ cd restful-order-service/frontend_server
 $ npm run dev
 ```

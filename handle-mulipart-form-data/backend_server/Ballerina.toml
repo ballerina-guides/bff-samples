@@ -1,6 +1,6 @@
 [package]
-org = "bff"
-name = "payload_validation"
+org = "bff_samples"
+name = "multipart_form_support"
 version = "0.1.0"
 distribution = "2201.8.2"
 

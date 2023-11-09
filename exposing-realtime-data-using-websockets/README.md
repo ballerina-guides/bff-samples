@@ -16,7 +16,7 @@ $ git clone https://github.com/ballerina-guides/bff-samples.git
 
 ```
 $ cd bff-samples
-$ cd websocket/backend_server
+$ cd exposing-realtime-data-using-websockets/backend_server
 $ bal run
 ```
 
@@ -24,6 +24,6 @@ $ bal run
 
 ```
 $ cd bff-samples
-$ cd websocket/frontend_server
+$ cd exposing-realtime-data-using-websockets/frontend_server
 $ npm run dev
 ```

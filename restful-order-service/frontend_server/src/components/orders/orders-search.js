@@ -16,12 +16,27 @@
  * under the License.
  */
 
-import dynamic from 'next/dynamic';
-import { styled } from '@mui/material/styles';
+import MagnifyingGlassIcon from '@heroicons/react/24/solid/MagnifyingGlassIcon';
+import { Card, InputAdornment, OutlinedInput, SvgIcon } from '@mui/material';
 
-const ApexChart = dynamic(() => import('react-apexcharts'), {
-  ssr: false,
-  loading: () => null
-});
-
-export const Chart = styled(ApexChart)``;
+export const OrdersSearch = ({onChange, customer}) => (
+  <Card sx={{ p: 2 }}>
+    <OutlinedInput
+      fullWidth
+      placeholder="Filter by customer"
+      onChange={onChange}
+      value={customer}
+      startAdornment={(
+        <InputAdornment position="start">
+          <SvgIcon
+            color="action"
+            fontSize="small"
+          >
+            <MagnifyingGlassIcon />
+          </SvgIcon>
+        </InputAdornment>
+      )}
+      sx={{ maxWidth: 500 }}
+    />
+  </Card>
+);

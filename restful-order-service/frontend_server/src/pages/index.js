@@ -1,13 +1,31 @@
+/**
+ * Copyright (c) 2023, WSO2 LLC (http://www.wso2.com) All Rights Reserved.
+ *
+ * WSO2 LLC licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/material';
-import { OrdersTable } from 'src/sections/order/orders-table';
-import { OrdersSearch } from 'src/sections/order/orders-search';
-import OrderSelect from 'src/sections/order/orders-dropdown';
+import { OrdersTable } from 'src/components/orders/orders-table';
+import { OrdersSearch } from 'src/components/orders/orders-search';
+import OrderSelect from 'src/components/orders/orders-dropdown';
 import { getCustomerOrderUrl, getOrderUrl } from 'src/constants/Constants';
 import { getAPI } from 'src/api/ApiHandler';
-import SimpleDialog from 'src/sections/order/view-order';
+import SimpleDialog from 'src/components/orders/view-order';
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
@@ -89,7 +107,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          orders | MegaPort Kit
+          Orders | MegaPort Kit
         </title>
       </Head>
       <Box

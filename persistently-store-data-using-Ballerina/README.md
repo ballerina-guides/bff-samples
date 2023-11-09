@@ -33,7 +33,7 @@ CREATE DATABASE <database name>;
 
 ```
 $ cd bff-samples
-$ cd persists/backend_server
+$ cd persistently-store-data-using-Ballerina/backend_server
 $ bal run
 ```
 
@@ -41,6 +41,6 @@ $ bal run
 
 ```
 $ cd bff-samples
-$ cd persists/frontend_server
+$ cd persistently-store-data-using-Ballerina/frontend_server
 $ npm run dev
 ```

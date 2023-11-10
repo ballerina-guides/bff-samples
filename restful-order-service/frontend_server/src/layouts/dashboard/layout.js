@@ -19,7 +19,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { styled } from '@mui/material/styles';
-import { SideNav } from './side-nav';
+import { SideNav } from '../../components/side-nav';
 
 const SIDE_NAV_WIDTH = 280;
 

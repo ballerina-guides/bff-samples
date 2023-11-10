@@ -27,7 +27,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
-import { items } from './config';
+import { items } from '../layouts/dashboard/config';
 import { SideNavItem } from './side-nav-item';
 
 export const SideNav = (props) => {

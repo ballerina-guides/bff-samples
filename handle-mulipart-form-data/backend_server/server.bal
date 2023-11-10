@@ -4,7 +4,7 @@ import ballerina/log;
 import ballerina/mime;
 import ballerina/random;
 
-public type CustomerRegistrationData record {|
+type CustomerRegistrationData record {|
     string firstName;
     string lastName;
     string address;
@@ -44,7 +44,7 @@ service /crm on new http:Listener(9090) {
             byte[] agreemntForm = check bodyParts[1].getByteArray();
             byte[] image = check bodyParts[2].getByteArray();
             string customerId = check registerCustomer(registrationData, agreemntForm, image);
-            return <http:Created>{body: {status: "Customer registered successfully.", customerId}};
+            return <http:Created>{body: {message: "Customer registered successfully.", customerId}};
         } on fail error e {
             return <http:InternalServerError>{body: {message: string `Error while parsing the request: ${e.message()}`}};
         }

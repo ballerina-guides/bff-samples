@@ -45,7 +45,7 @@ export default function SimpleDialog(props) {
         <p><b>{"End From -"}</b> {cargo.endFrom}</p>
         </li>
         <li>
-        <p><b>{"Type -"}</b> {cargo.type}</p>
+        <p><b>{"Type -"}</b> {cargo.cargoType}</p>
         </li>
       </ul>
       </>

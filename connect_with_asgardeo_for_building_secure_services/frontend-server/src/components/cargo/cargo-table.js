@@ -78,7 +78,7 @@ export const CargosTable = (props) => {
                       {cargo.endFrom}
                     </TableCell>
                     <TableCell>
-                      {cargo.type}
+                      {cargo.cargoType}
                     </TableCell>
                     <TableCell>
                       <Button onClick={() => handleClick(cargo.cargoId)}>View</Button>

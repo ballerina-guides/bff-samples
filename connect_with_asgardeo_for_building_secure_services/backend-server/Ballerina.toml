@@ -1,0 +1,5 @@
+[package]
+org = "bff_samples"
+name = "connect_asgardeo_with_ballerina_rest"
+version = "0.1.0"
+distribution = "2201.8.2"

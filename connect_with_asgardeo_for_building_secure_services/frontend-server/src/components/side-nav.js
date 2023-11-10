@@ -26,7 +26,7 @@ import {
   Typography,
   useMediaQuery
 } from '@mui/material';
-import { items } from './config';
+import { items } from '../layouts/dashboard/config';
 import { SideNavItem } from './side-nav-item';
 import { useLocation } from 'react-router-dom';
 

@@ -1,0 +1,5 @@
+[package]
+org = "bff_sample"
+name = "expose_complex_data_with_graphql"
+version = "0.1.0"
+distribution = "2201.8.2"

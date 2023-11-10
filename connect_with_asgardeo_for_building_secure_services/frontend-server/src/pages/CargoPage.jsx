@@ -18,10 +18,10 @@
 
 import { useEffect, useState } from 'react';
 import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/material';
-import { CargosTable } from '../sections/cargo/cargo-table';
+import { CargosTable } from '../components/cargo/cargo-table';
 import { getCargoUrl } from '../api/Constants';
 import { getAPI } from '../api/ApiHandler';
-import SimpleDialog from '../sections/cargo/view-cargo';
+import SimpleDialog from '../components/cargo/view-cargo';
 import { Layout as DashboardLayout } from '../layouts/dashboard/layout';
 import { useAuthContext } from "@asgardeo/auth-react";
 import AddIcon from '@mui/icons-material/Add';

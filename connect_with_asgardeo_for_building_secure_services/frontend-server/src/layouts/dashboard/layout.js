@@ -18,7 +18,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { SideNav } from './side-nav';
+import { SideNav } from '../../components/side-nav';
 import { useLocation } from 'react-router-dom';
 
 const SIDE_NAV_WIDTH = 280;

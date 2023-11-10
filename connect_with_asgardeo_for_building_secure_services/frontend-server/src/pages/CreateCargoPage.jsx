@@ -87,7 +87,7 @@ const Page = () => {
     }),
     onSubmit: async ({ type, startFrom, endFrom }, helpers) => {
       try {
-        const response = await postAPI(submitCargoUrl, { type, startFrom, endFrom, cargoId: createCargoId(), status: 'DOCKED', lat: getRandomInRange().toString(), lon: getRandomInRange().toString() }, {
+        const response = await postAPI(submitCargoUrl, { cargoType: type, startFrom, endFrom, cargoId: createCargoId(), status: 'DOCKED', lat: getRandomInRange().toString(), lon: getRandomInRange().toString() }, {
           headers:
           {
               "Authorization": `Bearer ${await getAccessToken()}`

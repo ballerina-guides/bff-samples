@@ -27,7 +27,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { items } from '../layouts/dashboard/config';
-import { SideNavItem } from './side-nav-item';
+import { SideNavItem } from '../components/side-nav-item';
 import { useLocation } from 'react-router-dom';
 
 export const SideNav = (props) => {

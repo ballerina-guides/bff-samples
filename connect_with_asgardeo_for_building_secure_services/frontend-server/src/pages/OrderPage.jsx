@@ -18,7 +18,7 @@
 
 import { useEffect, useState } from 'react';
 import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/material';
-import { OrdersTable } from '../sections/order/orders-table';
+import { OrdersTable } from '../components/order/orders-table';
 import { getOrderUrl } from '../api/Constants';
 import { getAPI } from '../api/ApiHandler';
 import { Layout } from '../layouts/dashboard/layout.js';

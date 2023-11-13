@@ -10,7 +10,7 @@ Ballerina-powered backends can securely call services - whether on-premise, in a
 $ git clone https://github.com/ballerina-guides/bff-samples.git
 ```
 
-2. Create a new Asgardeo Application and configure it into the `securely_consume_services_from_backends/Config.toml`. Please refer this to get more details.
+2. Create a new Asgardeo Application and configure it into the `connect_with_asgardeo_for_building_secure_services/Config.toml`. Please refer [this](https://wso2.com/asgardeo/docs/guides/applications/register-single-page-app/) to get more details.
 
 3. Open a Terminal and run the Ballerina service
 

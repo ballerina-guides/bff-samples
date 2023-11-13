@@ -1,10 +1,10 @@
 import ballerina/http;
 
-configurable string tokenUrl = ?;
-configurable string introspectUrl = ?;
-configurable string clientId = ?;
-configurable string clientSecret = ?;
-configurable string certPath = ?;
+// configurable string tokenUrl = ?;
+// configurable string introspectUrl = ?;
+// configurable string clientId = ?;
+// configurable string clientSecret = ?;
+// configurable string certPath = ?;
 
 listener http:Listener shipexListner = check new (9092);
 

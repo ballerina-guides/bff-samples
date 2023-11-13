@@ -1,6 +1,6 @@
-import microservices.cargoWave as _;
-import microservices.shipEx as _;
-import microservices.tradeLogix as _;
+import securely_interact_internal_and_external_services.cargoWave as _;
+import securely_interact_internal_and_external_services.shipEx as _;
+import securely_interact_internal_and_external_services.tradeLogix as _;
 
 import ballerina/http;
 

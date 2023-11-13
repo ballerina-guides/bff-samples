@@ -31,14 +31,14 @@ final table<Order> key(id) orderTable = table [
         maxAge: 84900
     }
 }
-// service /sales on new http:Listener(9090, 
-// secureSocket = {
-//     key: {
-//         certFile: "../resources/public.crt",
-//         keyFile: "../resources/private.key"
-//     }
-// }) {
-service /sales on new http:Listener(9090) {
+service /sales on new http:Listener(9090,
+    secureSocket = {
+        key: {
+            certFile: "../path/to/cert",
+            keyFile: "../path/to/private-key"
+        }
+    }
+) {
     @http:ResourceConfig {
         cors: {
             allowOrigins: ["http://localhost:3000", "http://www.hmart-dev.com", "http://www.hmart.com"],

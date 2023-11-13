@@ -65,10 +65,10 @@ export const OrdersTable = (props) => {
                 return (
                   <TableRow
                     hover
-                    key={order.orderId}
+                    key={order.id}
                   >
                     <TableCell>
-                      {order.orderId}
+                      {order.id}
                     </TableCell>
                     <TableCell>
                       {order.status}

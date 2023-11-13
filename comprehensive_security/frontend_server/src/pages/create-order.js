@@ -69,7 +69,7 @@ const Page = () => {
     }),
     onSubmit: async ({item, customer, quantity}, helpers) => {
       try {
-        const response = await postAPI(submitOrderUrl, { date: createdDate(), item, customerId: customer, status: 'PENDING', shipId: null, orderId: createID(), quantity: parseInt(quantity) }, {
+        const response = await postAPI(submitOrderUrl, { date: createdDate(), item, customerId: customer, status: 'PENDING', shipId: null, id: createID(), quantity: parseInt(quantity) }, {
           headers: {
             requestId: "Calling the create order api /order/submit/"
           }

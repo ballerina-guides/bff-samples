@@ -1,0 +1,5 @@
+[package]
+org = "bff_samples"
+name = "securely_interact_internal_and_external_services"
+version = "0.1.0"
+distribution = "2201.8.2"

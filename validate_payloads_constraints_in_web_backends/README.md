@@ -1,4 +1,4 @@
-# Validate payload constraints in Web backends
+# Validate payloads constraints in Web backends
 
 Web and mobile apps frequently use JSON payloads. With Ballerina's native JSON capabilities, JSON data can be mapped to Ballerina records with features like constraint validations.
 

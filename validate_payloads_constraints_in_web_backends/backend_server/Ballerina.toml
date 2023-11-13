@@ -1,5 +1,5 @@
 [package]
 org = "bff_samples"
-name = "validate_payload_constraints"
+name = "validate_payloads_constraints"
 version = "0.1.0"
 distribution = "2201.8.2"

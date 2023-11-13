@@ -14,7 +14,7 @@ type Order record {|
     string date;
     OrderStatus status;
     @constraint:Int {
-        minValue: {value: 0, message: "Quantity should be greater than one"},
+        minValue: {value: 1, message: "Quantity should be greater than one"},
         maxValue: {value: 10, message: "Quantity should not exceed 10"}
     }
     int quantity;

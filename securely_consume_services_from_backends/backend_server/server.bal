@@ -4,13 +4,13 @@ import securely_interact_internal_and_external_services.tradeLogix as _;
 
 import ballerina/http;
 
-configurable string cargoWaveUrl = ?;
 configurable string clientId = ?;
 configurable string clientSecret = ?;
 configurable string jwksUrl = ?;
-configurable string shipExUrl = ?;
 configurable string tokenUrl = ?;
 configurable string tradeLogixUrl = ?;
+configurable string shipExUrl = ?;
+configurable string cargoWaveUrl = ?;
 
 type Cargo record {|
     readonly string id;
@@ -44,24 +44,24 @@ final table<Cargo> cargoTable = table [
 final http:Client cargoClient = check new (
     cargoWaveUrl, auth = {tokenUrl, clientId, clientSecret, scopes: ["cargo_read"]},
     secureSocket = {
-        // key: {certFile: "../path/public.crt", keyFile: "../path/private.key"},
-        // cert: "../path/public.crt"
+        key: {certFile: "../path/public.crt", keyFile: "../path/private.key"},
+        cert: "../path/public.crt"
     }
 );
 
 final http:Client shipExClient = check new (
     shipExUrl, auth = {tokenUrl, clientId, clientSecret, scopes: ["cargo_read"]},
     secureSocket = {
-        // key: {certFile: "../path/public.crt", keyFile: "../path/private.key"},
-        // cert: "../path/public.crt"
+        key: {certFile: "../path/public.crt", keyFile: "../path/private.key"},
+        cert: "../path/public.crt"
     }
 );
 
 final http:Client tradeLogixClient = check new (
     tradeLogixUrl, auth = {tokenUrl, clientId, clientSecret, scopes: ["cargo_read"]},
     secureSocket = {
-        // key: {certFile: "../path/public.crt", keyFile: "../path/private.key"},
-        // cert: "../path/public.crt"
+        key: {certFile: "../path/public.crt", keyFile: "../path/private.key"},
+        cert: "../path/public.crt"
     }
 );
 

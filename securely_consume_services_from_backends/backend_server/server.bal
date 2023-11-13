@@ -72,8 +72,8 @@ final http:Client tradeLogixClient = check new (
 }
 service /logistics on new http:Listener(9090) {
     resource function post cargos(Cargo cargo) returns http:Ok|http:InternalServerError|http:BadRequest {
-        cargoTable.add(cargo);
         do {
+            cargoTable.add(cargo);
             http:Client serviceClient = cargo.cargoType == SHIPEX ?
                 shipExClient : cargo.cargoType == CARGO_WAVE ?
                     cargoClient : tradeLogixClient;

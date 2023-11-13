@@ -1,4 +1,5 @@
 import ballerina/http;
+import ballerina/log;
 
 // configurable string tokenUrl = ?;
 // configurable string introspectUrl = ?;
@@ -26,9 +27,10 @@ listener http:Listener tradelogixListner = check new (9093);
 // }
 service / on tradelogixListner {
     resource function post shipments() returns http:Accepted {
+        log:printInfo("New cargo of TradeLogix was successfully register to the megaport");
         return {
             body: {
-                message: "New cargo was successfully register to the megaport"
+                message: "New cargo of TradeLogix was successfully register to the megaport"
             }
         };
     }

@@ -202,6 +202,9 @@ dependencies = [
 	{org = "ballerina", name = "lang.value"},
 	{org = "ballerina", name = "observe"}
 ]
+modules = [
+	{org = "ballerina", packageName = "log", moduleName = "log"}
+]
 
 [[package]]
 org = "ballerina"
@@ -273,7 +276,8 @@ org = "bff_samples"
 name = "securely_interact_internal_and_external_services"
 version = "0.1.0"
 dependencies = [
-	{org = "ballerina", name = "http"}
+	{org = "ballerina", name = "http"},
+	{org = "ballerina", name = "log"}
 ]
 modules = [
 	{org = "bff_samples", packageName = "securely_interact_internal_and_external_services", moduleName = "securely_interact_internal_and_external_services"},

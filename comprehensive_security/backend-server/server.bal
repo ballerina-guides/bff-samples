@@ -39,7 +39,6 @@ final table<Order> key(id) orderTable = table [
 //     }
 // }) {
 service /sales on new http:Listener(9090) {
-
     @http:ResourceConfig {
         cors: {
             allowOrigins: ["http://localhost:3000", "http://www.hmart-dev.com", "http://www.hmart.com"],

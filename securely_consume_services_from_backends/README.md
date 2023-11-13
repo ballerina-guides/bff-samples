@@ -1,8 +1,8 @@
-## Ballerina for securely consume services from backends
+# Ballerina for securely consume services from backends
 
 Ballerina-powered backends can securely call services - whether on-premise, in a private cloud, or SaaS - with the necessary security features such as client-side OAuth2, mutual TLS, and JWT-encapsulated user data.
 
-### Set up
+## Set up
 
 1. Clone the project 
 

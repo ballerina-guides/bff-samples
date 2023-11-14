@@ -16,7 +16,7 @@
  * under the License.
  */
 
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import { Box } from '@mui/system';
@@ -32,15 +32,9 @@ export default function SimpleDialog(props) {
     <Box sx={{width:"15rem", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
     <Dialog onClose={handleClose} open={open} fullWidth>
       <DialogTitle sx={{textAlign:"center"}}>Agreement Content</DialogTitle>
-      <p style={{textAlign:'center'}}>{agreement}</p>
+       {agreement}
     </Dialog>
     </Box>
   );
 }
 
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  id: PropTypes.string,
-  agreement: PropTypes.string
-};

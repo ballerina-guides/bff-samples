@@ -30,7 +30,6 @@ const Page = () => {
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState('123');
   const [agreement, setAgreement] = useState('');
 
   const fetchCustomerData = async (customerId) => {
@@ -48,7 +47,6 @@ const Page = () => {
   };
 
   const handleClickOpen = async (id) => {
-    setId(id);
     await fetchCustomerData(id);
     setOpen(true);
   };
@@ -123,7 +121,7 @@ const Page = () => {
             <CustomersTable
               count={data.length}
               items={data}
-              handleClick={() => handleClickOpen(id)}
+              handleClick={handleClickOpen}
               open={open}
             />
           </Stack>
@@ -131,7 +129,6 @@ const Page = () => {
         <SimpleDialog
           open={open}
           onClose={handleClose}
-          id={id}
           agreement={agreement}
           sx={{padding:"5rem"}}
       />

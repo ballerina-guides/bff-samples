@@ -46,7 +46,7 @@ const Page = () => {
   });
 
   const [image, setImage] = useState(null);
-  const [agreementPdf, setAgreementPdf] = useState(null);
+  const [agreement, setAgreement] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,8 +60,8 @@ const Page = () => {
     setImage(e.target.files[0]);
   };
 
-  const handleAgreementPdfChange = (e) => {
-    setAgreementPdf(e.target.files[0]);
+  const handleAgreementChange = (e) => {
+    setAgreement(e.target.files[0]);
   };
 
   const handleClose = () => {
@@ -73,7 +73,7 @@ const Page = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("form", JSON.stringify(formData));
     formDataToSend.append("image", image);
-    formDataToSend.append("agreement", agreementPdf);
+    formDataToSend.append("agreement", agreement);
     try {
       const response = await postAPI(submitCustomersUrl, formDataToSend, {
         headers: {
@@ -170,9 +170,9 @@ const Page = () => {
                     <p>Agreement</p>
                     <input
                       type="file"
-                      accept=".pdf"
-                      name="agreementPdf"
-                      onChange={handleAgreementPdfChange}
+                      accept=".txt"
+                      name="agreement"
+                      onChange={handleAgreementChange}
                       required
                     />
                   </Grid>

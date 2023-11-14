@@ -77,7 +77,7 @@ export const CustomersTable = (props) => {
                       {customer.dependents}
                     </TableCell>
                     <TableCell>
-                      <Button onClick={() => handleClick(customer.customerId)}>View Agreement</Button>
+                      <Button onClick={() => handleClick(customer.id)}>View Agreement</Button>
                     </TableCell>
                   </TableRow>
                 );
@@ -88,11 +88,4 @@ export const CustomersTable = (props) => {
       </Scrollbar>
     </Card>
   );
-};
-
-CustomersTable.propTypes = {
-  count: PropTypes.number,
-  items: PropTypes.array,
-  handleClick: PropTypes.func,
-  open: PropTypes.bool
 };

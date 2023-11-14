@@ -71,23 +71,19 @@ final http:Client tradeLogixClient = check new (
     }
 }
 service /logistics on new http:Listener(9090) {
-    resource function post cargos(Cargo cargo) returns http:Ok|http:InternalServerError|http:BadRequest {
-        do {
-            cargoTable.add(cargo);
-            http:Client serviceClient = cargo.cargoType == SHIPEX ?
-                shipExClient : cargo.cargoType == CARGO_WAVE ?
-                    cargoClient : tradeLogixClient;
-            http:Response res = check serviceClient->post("/shipments", cargo);
-            if res.statusCode == 202 {
-                return <http:Ok>{body: "Successfully submitted the shipment request"};
-            }
-            return <http:BadRequest>{body: {message: string `Invalid cargo: ${cargo.id}`}};
-        } on fail error e {
-            return <http:InternalServerError>{
-                body: {message: string `Failed to submit the shipment request: ${e.message()}`}
-            };
+    resource function post cargos(Cargo cargo) returns http:Ok|http:InternalServerError {
+        cargoTable.add(cargo);
+        http:Client serviceClient = cargo.cargoType == SHIPEX ?
+            shipExClient : cargo.cargoType == CARGO_WAVE ?
+                cargoClient : tradeLogixClient;
+        http:Response|error res = serviceClient->post("/shipments", cargo);
+        if res is http:Response && res.statusCode == 202 {
+            return <http:Ok>{body: "Successfully submitted the shipment request"};
         }
-    }
+        return <http:InternalServerError>{
+            body: {message: "Error occurred while submitting the shipment request"}
+        };
+    };
 
     resource function get cargos() returns Cargo[] {
         return cargoTable.toArray();

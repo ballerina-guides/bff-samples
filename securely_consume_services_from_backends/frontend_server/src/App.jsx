@@ -25,8 +25,8 @@ function App() {
   const asgardioConfig = {
     signInRedirectURL: "http://localhost:3000",
     signOutRedirectURL: "http://localhost:3000",
-    clientID: "s0PYeIeVCb1fVPPVMfBLMde7tNka",
-    baseUrl: "https://api.asgardeo.io/t/orgsd",
+    clientID: "<Client id of the Asgardeo application>",
+    baseUrl: "<Organization Url of the Asgardeo application>",
     scope: ["openid", "email", "profile", "order_insert", "order_read", "cargo_insert", "cargo_read"]
   };
 

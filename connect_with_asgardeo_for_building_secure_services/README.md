@@ -20,7 +20,9 @@ audience="<CLIENT_ID>"
 jwksUrl="<JWKS_URL>"
 ```
 
-3. Open a Terminal and run the Ballerina service
+3. Add the client id and the Url of the Asgardeo organization in the `connect_with_asgardeo_for_building_secure_services/frontend-server/src/App.jsx`.
+
+4. Open a Terminal and run the Ballerina service
 
 ```
 $ cd bff-samples
@@ -28,7 +30,7 @@ $ cd connect_with_asgardeo_for_building_secure_services/backend_server
 $ bal run
 ```
 
-4. Then open a new terminal and run the React service
+5. Then open a new terminal and run the React service
 
 ```
 $ cd bff-samples

@@ -45,8 +45,7 @@ service /crm on new http:Listener(9090) {
         do {
             mime:Entity[] bodyParts = check request.getBodyParts();
             string registrationDataString = check bodyParts[0].getText();
-            json registrationDataJson = check registrationDataString.fromJsonString();
-            CustomerData registrationData = check registrationDataJson.cloneWithType();
+            CustomerData registrationData = check registrationDataString.fromJsonStringWithType();
             byte[] image = check bodyParts[1].getByteArray();
             byte[] agreemntForm = check bodyParts[2].getByteArray();
             string customerId = check registerCustomer(registrationData, agreemntForm, image);

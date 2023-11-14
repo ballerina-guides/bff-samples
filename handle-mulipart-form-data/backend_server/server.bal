@@ -1,20 +1,24 @@
 import ballerina/http;
 import ballerina/io;
-import ballerina/log;
 import ballerina/mime;
 import ballerina/random;
 
-type CustomerRegistrationData record {|
+type CustomerData record {|
     string firstName;
     string lastName;
     string address;
     int dependents;
 |};
 
-final table<CustomerRegistrationData> customerTable = table [
-    {firstName: "James", lastName: "Clerk", address: "456, ElmAvenue, Suite-7, Willowville", dependents: 2},
-    {firstName: "John", lastName: "Doe", address: "789, OakLane, Unit-C12, Pineville", dependents: 6},
-    {firstName: "Anna", lastName: "Watson", address: "101, Maple-Road, OfficeD, Birchwood", dependents: 7}
+type Customer record {|
+    *CustomerData;
+    string id;
+|};
+
+final table<Customer> customerTable = table [
+    {id: "C-123", firstName: "James", lastName: "Clerk", address: "456, ElmAvenue, Suite-7, Willowville", dependents: 2},
+    {id: "C-234", firstName: "John", lastName: "Doe", address: "789, OakLane, Unit-C12, Pineville", dependents: 6},
+    {id: "C-342", firstName: "Anna", lastName: "Watson", address: "101, Maple-Road, OfficeD, Birchwood", dependents: 7}
 ];
 
 @http:ServiceConfig {
@@ -23,14 +27,16 @@ final table<CustomerRegistrationData> customerTable = table [
     }
 }
 service /crm on new http:Listener(9090) {
-    resource function get customers() returns CustomerRegistrationData[] {
+    resource function get customers() returns Customer[] {
         return customerTable.toArray();
     }
 
-    resource function get customers/[string customerId]/agreement() returns byte[]|http:NotFound {
+    resource function get customers/[string customerId]/agreement() returns byte[]|http:InternalServerError {
         byte[]|error agreementForm = getAgreementForm(customerId);
         if agreementForm is error {
-            return <http:NotFound>{body: {message: "Agreement form not found for the customer ID: " + customerId}};
+            return <http:InternalServerError>{
+                body: {message: "Agreement form not found for the customer ID: " + customerId}
+            };
         }
         return agreementForm;
     }
@@ -40,28 +46,25 @@ service /crm on new http:Listener(9090) {
             mime:Entity[] bodyParts = check request.getBodyParts();
             string registrationDataString = check bodyParts[0].getText();
             json registrationDataJson = check registrationDataString.fromJsonString();
-            CustomerRegistrationData registrationData = check registrationDataJson.cloneWithType();
-            byte[] agreemntForm = check bodyParts[1].getByteArray();
-            byte[] image = check bodyParts[2].getByteArray();
+            CustomerData registrationData = check registrationDataJson.cloneWithType();
+            byte[] image = check bodyParts[1].getByteArray();
+            byte[] agreemntForm = check bodyParts[2].getByteArray();
             string customerId = check registerCustomer(registrationData, agreemntForm, image);
             return <http:Created>{body: {message: "Customer registered successfully.", customerId}};
         } on fail error e {
-            return <http:InternalServerError>{body: {message: string `Error while parsing the request: ${e.message()}`}};
+            return <http:InternalServerError>{body: {message: string `Error while processing the request: ${e.message()}`}};
         }
     }
 }
 
-function getAgreementForm(string id) returns byte[]|error {
-    log:printInfo("Agreement form requested for customer ID: " + id);
-    string filePath = getAgreementFormPath();
-    return check io:fileReadBytes(filePath);
+function getAgreementForm(string customerId) returns byte[]|error {
+    return check io:fileReadBytes(string `./resources/agreements/${customerId}.txt`);
 }
 
-function registerCustomer(CustomerRegistrationData registrationData, byte[] agreemntForm, byte[] image) returns string|error {
-    customerTable.add(registrationData);
-    return "C - " + (check random:createIntInRange(100, 1000)).toString();
-}
-
-function getAgreementFormPath() returns string {
-    return "./resources/agreements/sample_agreement_form.txt";
+function registerCustomer(CustomerData registrationData, byte[] agreemntForm, byte[] image) returns string|error {
+    string customerId = string `C - ${check random:createIntInRange(100, 999)}`;
+    check io:fileWriteBytes(string `./resources/agreements/${customerId}.txt`, agreemntForm);
+    check io:fileWriteBytes(string `./resources/images/${customerId}`, image);
+    customerTable.add({id: customerId, ...registrationData});
+    return customerId;
 }

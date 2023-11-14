@@ -44,11 +44,7 @@ distinct service class LocationService {
                 latitude: check random:createIntInRange(668700, 1246700) * 1.0 / 10000.0,
                 longitude: check random:createIntInRange(258400, 493800) * 1.0 / 10000.0
             };
-            error? e = caller->writeMessage(currentLocation);
-            if e is error {
-                log:printError(string `Error while upodating the location of vehicle: ${vehicleId}`, e);
-                return;
-            }
+            check caller->writeMessage(currentLocation);
             runtime:sleep(3);
         }
     }

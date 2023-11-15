@@ -32,7 +32,7 @@ export default function SimpleDialog(props) {
     <Box sx={{width:"15rem", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
     <Dialog onClose={handleClose} open={open} fullWidth>
       <DialogTitle sx={{textAlign:"center"}}>Agreement Content</DialogTitle>
-       {agreement}
+      <p style={{textAlign:'center'}}>{agreement}</p>
     </Dialog>
     </Box>
   );

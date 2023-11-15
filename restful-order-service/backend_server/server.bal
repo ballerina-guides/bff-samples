@@ -37,7 +37,9 @@ service /sales on new http:Listener(9090) {
 
     // Example: http://localhost:9090/sales/orders/HM-238
     resource function get orders/[string id]() returns Order|http:NotFound {
-        return orders[id] ?: <http:NotFound>{body: string `Order not found. Order ID: ${id}`};
+        return orders[id] ?: <http:NotFound>{
+            body: string `Order not found. Order ID: ${id}`
+        };
     };
 
     // Example: http://localhost:9090/sales/customers/C-124/orders?status=PENDING
@@ -50,7 +52,9 @@ service /sales on new http:Listener(9090) {
     // Example: http://localhost:9090/sales/orders
     resource function post orders(Order orderRequest) returns Order|http:BadRequest {
         if orders.hasKey(orderRequest.id) {
-            return <http:BadRequest>{body: string `Order id already exists. Order ID: ${orderRequest.id}`};
+            return <http:BadRequest>{
+                body: string `Order id already exists. Order ID: ${orderRequest.id}`
+            };
         }
         orders.add(orderRequest);
         return orderRequest;

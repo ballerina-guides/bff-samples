@@ -37,16 +37,14 @@ service /sales on new http:Listener(9090) {
 
     resource function post orders(Order orderEntry) returns http:Ok|http:InternalServerError|http:BadRequest {
         orderEntry.cargoId = getCargoId();
-        string[]|persist:Error submitResult = orderDatabase->/orders.post([orderEntry]);
-        if submitResult is string[] {
+        string[]|persist:Error result = orderDatabase->/orders.post([orderEntry]);
+        if result is string[] {
             return http:OK;
         } 
-        if submitResult is persist:ConstraintViolationError {
+        if result is persist:ConstraintViolationError {
             return <http:BadRequest>{body: {message: string `Invalid cargo id: ${orderEntry.cargoId}`}};
         }
-        return <http:InternalServerError>{
-            body: {message: string `Error while inserting an order ${submitResult.message()}`}
-        };
+        return http:INTERNAL_SERVER_ERROR;
     };
 }
 

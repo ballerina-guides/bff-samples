@@ -91,7 +91,6 @@ const Page = () => {
   });
 
   return (
-    // error != null ? <div>Something went wrong</div> :
     <>
       <Head>
         <title>

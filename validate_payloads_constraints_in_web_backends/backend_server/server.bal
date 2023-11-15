@@ -42,7 +42,7 @@ final table<Order> key(id) orders = table [
 service /sales on new http:Listener(9090) {
     resource function post orders(Order orderRequest) returns Order|http:BadRequest {
         if orders.hasKey(orderRequest.id) {
-            return <http:BadRequest>{body: string `Order id already exists. Order ID: ${orderRequest.id}`};
+            return <http:BadRequest>{body: string `Order id already exists.`};
         }
         orders.add(orderRequest);
         return orderRequest;

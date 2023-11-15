@@ -73,19 +73,25 @@ final http:Client tradeLogixClient = check new (
 service /logistics on new http:Listener(9090) {
     resource function post cargos(Cargo cargo) returns http:Ok|http:InternalServerError {
         cargoTable.add(cargo);
-        http:Client serviceClient = cargo.cargoType == SHIPEX ?
-            shipExClient : cargo.cargoType == CARGO_WAVE ?
-                cargoClient : tradeLogixClient;
+        http:Client serviceClient = getServiceClient(cargo.cargoType);
         http:Response|error res = serviceClient->post("/shipments", cargo);
         if res is http:Response && res.statusCode == 202 {
-            return <http:Ok>{body: "Successfully submitted the shipment request"};
+            return <http:Ok>{body: "Successfully submitted the shipment"};
         }
         return <http:InternalServerError>{
-            body: {message: "Error occurred while submitting the shipment request"}
+            body: {message: "Error occurred while submitting the shipment"}
         };
     };
 
     resource function get cargos() returns Cargo[] {
         return cargoTable.toArray();
     };
+}
+
+function getServiceClient(CargoType cargoType) returns http:Client {
+    return cargoType == SHIPEX ? 
+            shipExClient : 
+            cargoType == CARGO_WAVE ? 
+            cargoClient : 
+            tradeLogixClient;
 }

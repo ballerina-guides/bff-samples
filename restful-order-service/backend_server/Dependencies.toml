@@ -270,12 +270,12 @@ dependencies = [
 
 [[package]]
 org = "bff_samples"
-name = "rest"
+name = "restful_service"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "http"}
 ]
 modules = [
-	{org = "bff_samples", packageName = "rest", moduleName = "rest"}
+	{org = "bff_samples", packageName = "restful_service", moduleName = "restful_service"}
 ]
 

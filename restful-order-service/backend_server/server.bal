@@ -42,7 +42,7 @@ service /sales on new http:Listener(9090) {
         };
     };
 
-    // Example: http://localhost:9090/sales/customers/C-124/orders?status=PENDING
+    // Example: http://localhost:9090/sales/customers/C-124/orders?status=DELIVERED
     resource function get customers/[string customerId]/orders(OrderStatus status = PENDING) returns Order[] {
         return from Order entry in orders
             where entry.customerId == customerId && entry.status == status

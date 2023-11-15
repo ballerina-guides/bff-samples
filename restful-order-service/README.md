@@ -1,4 +1,4 @@
-# Restful Order Service with Ballerina
+# RESTful Order Service with Ballerina
 
 Most web apps rely on REST APIs, with JSON serving as the predominant data exchange format. Handling REST API elements like path parameters, query parameters, HTTP headers, status codes, and complex JSON structures is crucial for web app backends. Ballerina addresses these needs effectively by incorporating all these REST features as first-class citizens within the language itself, simplifying the backend development process and making it more intuitive and efficient.
 

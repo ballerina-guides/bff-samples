@@ -20,7 +20,6 @@ import MagnifyingGlassIcon from '@heroicons/react/24/solid/MagnifyingGlassIcon';
 import { Card, InputAdornment, OutlinedInput, SvgIcon } from '@mui/material';
 
 export const OrdersSearch = ({onChange, customer}) => (
-  <Card sx={{ p: 2 }}>
     <OutlinedInput
       fullWidth
       placeholder="Filter by customer"
@@ -38,5 +37,4 @@ export const OrdersSearch = ({onChange, customer}) => (
       )}
       sx={{ maxWidth: 500 }}
     />
-  </Card>
 );

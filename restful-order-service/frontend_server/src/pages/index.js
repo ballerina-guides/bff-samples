@@ -147,6 +147,12 @@ const Page = () => {
               direction="row"
               alignContent={'center'}
               >
+                <Box
+                sx={{
+                  display:"flex",
+                  jusfifyContent:"center",
+                  gap:"1rem"
+                }}>
             <OrdersSearch 
               onChange={onSearchChange} 
               customer={customer}
@@ -155,6 +161,7 @@ const Page = () => {
               handleChange={onStatusChange}
               status={status}
             />
+                </Box>
             <Button label="Search" value="Search" onClick={onSearchButtonClick}> Search </Button>
             </Stack>
             <OrdersTable

@@ -23,12 +23,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function OrderSelect({handleChange, status}) {
+  console.log(status)
   return (
     <div>
-      <FormControl sx={{ p: 2, minWidth: 200, maxWidth: 500 }}>
+      <FormControl sx={{minWidth: 200, maxWidth: 500}}>
+        <InputLabel id="status">Status</InputLabel>
         <Select
+          labelId='status'
           id="status"
-          label="status"
           onChange={handleChange}
           autoWidth
           value={status}

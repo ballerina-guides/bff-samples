@@ -273,13 +273,13 @@ dependencies = [
 
 [[package]]
 org = "bff_samples"
-name = "validate_payload_constraints"
+name = "validate_payloads_constraints"
 version = "0.1.0"
 dependencies = [
 	{org = "ballerina", name = "constraint"},
 	{org = "ballerina", name = "http"}
 ]
 modules = [
-	{org = "bff_samples", packageName = "validate_payload_constraints", moduleName = "validate_payload_constraints"}
+	{org = "bff_samples", packageName = "validate_payloads_constraints", moduleName = "validate_payloads_constraints"}
 ]
 

@@ -1,0 +1,5 @@
+[package]
+org = "bff_samples"
+name = "comprehensive_security_for_web_backends"
+version = "0.1.0"
+distribution = "2201.8.2"
